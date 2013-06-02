@@ -24,9 +24,10 @@ terminate(_Reason, _Req, _State) ->
 %% ===================================================================
 handle_path({[<<"me">>], Req})->
     handle_token(cowboy_req:qs_val(<<"access_token">>, Req));
-handle_path({Path, Req}) ->
-    ?D("Unknown path ~p", [Path]),
-    cowboy_req:reply(404, [], Req).
+handle_path({_Path, Req}) ->
+    %?D("Unknown path ~p", [Path]),
+    %cowboy_req:reply(404, [], Req).
+    cowboy_req:reply(200, [], <<"hello">>, Req).
 
 handle_token({Token, Req}) when is_binary(Token) ->
     Body = <<"{\"id\":\"", Token/binary, "\"}">>,
