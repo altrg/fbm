@@ -50,7 +50,7 @@ load_config() ->
 
 %% @doc Initialize webserver
 start_cowboy() ->
-    Root = {"/", fbm_handler, []},
+    Root = {"/[...]", fbm_handler, []},
     Dispatch = cowboy_router:compile([{'_', [Root]}]),
     {ok, _} = cowboy:start_https(https, get_config(acceptors, 100),
                                 [{port, get_config(port, 8443)},
